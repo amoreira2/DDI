@@ -1,0 +1,3011 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>18. LLM Applicatios &#8212; Data Driven Investing with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/book.css?v=c2893119" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Finance/LLMs';</script>
+    <link rel="canonical" href="https://amoreira2.github.io/Fin418/chapters/Finance/LLMs.html" />
+    <link rel="icon" href="../../_static/figuremain2.jpg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="19. Additional Statistics Material" href="../additional/additional.html" />
+    <link rel="prev" title="17. Levering up and Shorting" href="LeverageandShorting.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/figuremain2.jpg" class="logo__image only-light" alt="Data Driven Investing with Python - Home"/>
+    <script>document.write(`<img src="../../_static/figuremain2.jpg" class="logo__image only-dark" alt="Data Driven Investing with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01/what-is-quant-investing.html">1. What is Data Driven Investing?</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01/statistical-techniques.html">1.1. Statistical Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01/computational-tools.html">1.2. Computational tools</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02/getting_started.html">2. Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02/cloud_setup.html">2.3. Cloud Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02/local_install.html">2.4. Local installation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../essentials/intro.html">3. Python Essentials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/basics.html">3.1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/collections.html">3.2. Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/numpy.html">3.3. Numpy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../essentials/introtopandas.html">3.4. Pandas</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../essentials/pandas/the_index.html">3.4.3. Indexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../essentials/pandas/timeseries.html">3.4.4. Time-Series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../essentials/pandas/reshape.html">3.4.5. Reshape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../essentials/pandas/merge.html">3.4.6. Merge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../essentials/pandas/groupby.html">3.4.7. Group-by</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../essentials/pandas/matplotlib.html">3.4.8. Plotting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../essentials/pandas/data_clean.html">3.4.9. Cleaning data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../essentials/pandas/storage_formats.html">3.4.10. Data Storage</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/control_flow.html">3.5. Flow control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/functions.html">3.6. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/plotting.html">3.7. Plotting</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="IntrotoReturns.html">4. Introduction to Asset Returns</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="TheChoiceofFrequency.html">4.5. The Choice of Frequency and Annualization of Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UsingAPI.html">4.6. Data APIs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="FactorModels.html">5. Factor Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="PortfolioMath.html">6. Portfolios</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/linear_algebra1.html">6.12. Linear Algebra Review</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="CapitalAllocationI.html">7. Capital Allocation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FactorModelEstimation.html">8. Factor Model Estimation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Timing.html">9. Timing Strategies</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="MarketTiming.html">9.1. Expected Returns Timing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Volatilitytiming.html">9.2. 📈 Volatility Timing: Boosting Sharpe Ratios! 🚀</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="crosssectionalequitystrategies.html">10. Cross-Sectional Equity Strategies</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Momentum.html">10.18. Momentum factor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Factors.html">10.19. An overview of factors</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="CapitalAllocationII.html">11. Capital Allocation II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Performance_evaluation.html">12. Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MachineLearning.html">13. Machine Learning in Finance</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="MultiFactorModels.html">14. Multi Factor Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="InterpretingFactorModels.html">14.7. 📊 Interpreting Factor Models</a></li>
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="RiskManagement.html">15. Risk Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TradingCosts.html">16. Liquidity and Trading Cost Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LeverageandShorting.html">17. Leverage, Shorting, and Limits to Arbitrage</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">18. Gen AI and LLMs in Finance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../additional/additional.html">19. Additional Statistics Material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Assignments/Assignments.html">20. Assignments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment1.html">20.1. Assignment 1</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/amoreira2/Fin418/blob/main/chapters/Finance/LLMs.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Fin418" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Fin418/issues/new?title=Issue%20on%20page%20%2Fchapters/Finance/LLMs.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Finance/LLMs.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>LLM Applicatios</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-build">18.1. What you’ll build</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">18.2. Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">18.3. 0) Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-if-needed">18.3.1. Install (if needed)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilities-fetch-preprocess-transcripts">18.4. 1) Utilities: fetch &amp; preprocess transcripts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#earnings-call-whats-surprising-vs-the-previous-call-fedex">18.5. 2) Earnings Call: What’s surprising vs the previous call? (FedEx)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lets-initiate-the-llm">18.5.1. Lets initiate the LLM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-the-llm-to-work">18.5.2. Putting the LLM to work</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fomc-press-conference-likely-marketmoving-lines">18.6. 3) FOMC Press Conference: likely market‑moving lines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forecasting-pitfalls-lookahead-bias-leakage-demo">18.7. 4) Forecasting Pitfalls: look‑ahead bias &amp; leakage demo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-fix-it">18.8. How to fix it?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="llm-applicatios">
+<h1><span class="section-number">18. </span>LLM Applicatios<a class="headerlink" href="#llm-applicatios" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<section id="what-you-ll-build">
+<h2><span class="section-number">18.1. </span>What you’ll build<a class="headerlink" href="#what-you-ll-build" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Earnings calls:</strong> Compare two consecutive transcripts (FedEx) and extract <strong>surprising changes</strong> vs prior call.</p></li>
+<li><p><strong>FOMC press conference:</strong> Surface statements most likely to <strong>surprise markets</strong>.</p></li>
+<li><p><strong>Forecasting pitfalls:</strong> Demonstrate <strong>leakage</strong> and why naive LLM+ML pipelines can overstate accuracy.</p></li>
+</ol>
+<blockquote>
+<div><p>This notebook assumes an internet connection. It includes robust fallbacks (short excerpts) so it still runs if websites block scraping during class.</p>
+</div></blockquote>
+</section>
+<section id="learning-objectives">
+<h2><span class="section-number">18.2. </span>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Use <strong>Gemini (AI Studio)</strong> from Python to classify/extract structured insights from financial text.</p></li>
+<li><p>Combine <strong>statistical novelty</strong> (TF‑IDF) with <strong>LLM judgment</strong> to find <em>surprising</em> statements.</p></li>
+<li><p>Run a small <strong>FOMC surprise</strong> detector with hawkish/dovish cues + LLM vetting.</p></li>
+<li><p>See a concrete <strong>look‑ahead bias</strong> failure case and how to fix it.</p></li>
+</ul>
+</section>
+<section id="setup">
+<h2><span class="section-number">18.3. </span>0) Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<p><strong>Gemini API (AI Studio) is free for prototyping</strong> in supported regions. Create a key in AI Studio and set it as <code class="docutils literal notranslate"><span class="pre">GEMINI_API_KEY</span></code>.</p>
+<section id="install-if-needed">
+<h3><span class="section-number">18.3.1. </span>Install (if needed)<a class="headerlink" href="#install-if-needed" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If running on a fresh environment, uncomment:</span>
+<span class="c1">#%pip install google-generativeai pandas numpy matplotlib scikit-learn beautifulsoup4 requests tqdm</span>
+<span class="o">%</span><span class="k">pip</span> install pdfminer.six pypdf
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pdfminer.six
+  Downloading pdfminer_six-20251107-py3-none-any.whl.metadata (4.2 kB)
+Collecting pypdf
+  Downloading pypdf-6.4.0-py3-none-any.whl.metadata (7.1 kB)
+Requirement already satisfied: charset-normalizer&gt;=2.0.0 in /usr/local/lib/python3.12/dist-packages (from pdfminer.six) (3.4.4)
+Requirement already satisfied: cryptography&gt;=36.0.0 in /usr/local/lib/python3.12/dist-packages (from pdfminer.six) (43.0.3)
+Requirement already satisfied: cffi&gt;=1.12 in /usr/local/lib/python3.12/dist-packages (from cryptography&gt;=36.0.0-&gt;pdfminer.six) (2.0.0)
+Requirement already satisfied: pycparser in /usr/local/lib/python3.12/dist-packages (from cffi&gt;=1.12-&gt;cryptography&gt;=36.0.0-&gt;pdfminer.six) (2.23)
+Downloading pdfminer_six-20251107-py3-none-any.whl (5.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">5.6/5.6 MB</span> <span class=" -Color -Color-Red">27.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading pypdf-6.4.0-py3-none-any.whl (329 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">329.5/329.5 kB</span> <span class=" -Color -Color-Red">12.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hInstalling collected packages: pypdf, pdfminer.six
+Successfully installed pdfminer.six-20251107 pypdf-6.4.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">re</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">math</span><span class="o">,</span><span class="w"> </span><span class="nn">warnings</span><span class="o">,</span><span class="w"> </span><span class="nn">textwrap</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span><span class="o">,</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.feature_extraction.text</span><span class="w"> </span><span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics.pairwise</span><span class="w"> </span><span class="kn">import</span> <span class="n">cosine_similarity</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">bs4</span><span class="w"> </span><span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">google.generativeai</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">genai</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Versions:
+Python 3.12.12 (main, Oct 10 2025, 08:52:57) [GCC 11.4.0]
+google-generativeai 0.8.5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="utilities-fetch-preprocess-transcripts">
+<h2><span class="section-number">18.4. </span>1) Utilities: fetch &amp; preprocess transcripts<a class="headerlink" href="#utilities-fetch-preprocess-transcripts" title="Link to this heading">#</a></h2>
+<p>These helpers try to download real transcripts. If blocked, they fall back to short built‑in excerpts (for demo only).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">bs4</span><span class="w"> </span><span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span><span class="o">,</span><span class="w"> </span><span class="nn">re</span>
+<span class="n">HEADERS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span><span class="s1">&#39;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0 Safari/537.36&#39;</span><span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">fetch_text</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">min_len</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">HEADERS</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="o">!=</span><span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">([</span><span class="s1">&#39;script&#39;</span><span class="p">,</span><span class="s1">&#39;style&#39;</span><span class="p">,</span><span class="s1">&#39;noscript&#39;</span><span class="p">]):</span> <span class="n">tag</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+        <span class="n">txt</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">txt</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span><span class="o">&gt;=</span><span class="n">min_len</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">split_sentences</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?&lt;=[.!?])\s+(?=[A-Z\[])&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">s</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+
+
+
+
+
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span><span class="o">,</span><span class="w"> </span><span class="nn">io</span><span class="o">,</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="n">HEADERS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s2">&quot;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 &quot;</span>
+                  <span class="s2">&quot;(KHTML, like Gecko) Chrome/123.0 Safari/537.36&quot;</span>
+<span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">fetch_pdf_bytes</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">40</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">HEADERS</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fetched </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2"> | status=</span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> | bytes=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span><span class="si">}</span><span class="s2"> | type=</span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">content</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">pdf_bytes_to_text</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="c1"># Try pdfminer.six</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">pdfminer.high_level</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_text</span>
+        <span class="k">return</span> <span class="n">extract_text</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pdfminer.six failed:&quot;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="c1"># Fallback: PyPDF</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">pypdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">PdfReader</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">PdfReader</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">p</span><span class="o">.</span><span class="n">extract_text</span><span class="p">()</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">reader</span><span class="o">.</span><span class="n">pages</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PyPDF failed:&quot;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_quarter_key</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="c1"># Prefer explicit &quot;Q4-FY25&quot; pattern</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Q([1-4])[-_]?FY(\d{2,4})&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span> <span class="n">fy</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">fy</span> <span class="o">=</span> <span class="n">fy</span> <span class="o">+</span> <span class="mi">2000</span> <span class="k">if</span> <span class="n">fy</span> <span class="o">&lt;</span> <span class="mi">100</span> <span class="k">else</span> <span class="n">fy</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">fy</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+    <span class="c1"># Fallback &quot;/2025/q4/&quot; pattern in path</span>
+    <span class="n">m2</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/(\d</span><span class="si">{4}</span><span class="s1">)/q([1-4])/&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">m2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">m2</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">m2</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># unknown → sorts earliest</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="earnings-call-whats-surprising-vs-the-previous-call-fedex">
+<h2><span class="section-number">18.5. </span>2) Earnings Call: What’s surprising vs the previous call? (FedEx)<a class="headerlink" href="#earnings-call-whats-surprising-vs-the-previous-call-fedex" title="Link to this heading">#</a></h2>
+<p><strong>Method:</strong> TF‑IDF novelty (current vs prior) → top candidates → Gemini JSON classification (surprise category/direction/relevance).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ensure chronological order (oldest -&gt; newest), then take the last two</span>
+
+<span class="n">fedex_urls</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">&#39;https://s21.q4cdn.com/665674268/files/doc_financials/2025/q4/FDX-Q4-FY25-Earnings-Call-Transcript_Final.pdf&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;https://s21.q4cdn.com/665674268/files/doc_financials/2025/q3/FDX-Q3-FY25-Earnings-Call-Transcript.pdf&#39;</span>
+<span class="p">]</span>
+<span class="n">fedex_urls_sorted</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fedex_urls</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">parse_quarter_key</span><span class="p">)</span>
+<span class="n">prev_url</span><span class="p">,</span> <span class="n">curr_url</span> <span class="o">=</span> <span class="n">fedex_urls_sorted</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">fedex_urls_sorted</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prev URL:&quot;</span><span class="p">,</span> <span class="n">prev_url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Curr URL:&quot;</span><span class="p">,</span> <span class="n">curr_url</span><span class="p">)</span>
+
+<span class="c1"># Extract text</span>
+<span class="n">prev_text</span> <span class="o">=</span> <span class="n">pdf_bytes_to_text</span><span class="p">(</span><span class="n">fetch_pdf_bytes</span><span class="p">(</span><span class="n">prev_url</span><span class="p">))</span>
+<span class="n">curr_text</span> <span class="o">=</span> <span class="n">pdf_bytes_to_text</span><span class="p">(</span><span class="n">fetch_pdf_bytes</span><span class="p">(</span><span class="n">curr_url</span><span class="p">))</span>
+
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Lengths -&gt; prev:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">prev_text</span><span class="p">),</span> <span class="s1">&#39;curr:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">curr_text</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- preview prev_text ---</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">prev_text</span><span class="p">[:</span><span class="mi">600</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- preview curr_text ---</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">curr_text</span><span class="p">[:</span><span class="mi">600</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prev URL: https://s21.q4cdn.com/665674268/files/doc_financials/2025/q3/FDX-Q3-FY25-Earnings-Call-Transcript.pdf
+Curr URL: https://s21.q4cdn.com/665674268/files/doc_financials/2025/q4/FDX-Q4-FY25-Earnings-Call-Transcript_Final.pdf
+Fetched https://s21.q4cdn.com/665674268/files/doc_financials/2025/q3/FDX-Q3-FY25-Earnings-Call-Transcript.pdf | status=200 | bytes=762180 | type=application/pdf
+Fetched https://s21.q4cdn.com/665674268/files/doc_financials/2025/q4/FDX-Q4-FY25-Earnings-Call-Transcript_Final.pdf | status=200 | bytes=192666 | type=application/pdf
+Lengths -&gt; prev: 65222 curr: 57980
+
+--- preview prev_text ---
+ FedEx Q3 FY25 Earnings Call Transcript – March 20, 2025 
+
+Jenifer Hollander 
+Vice President-Investor Relations, FedEx Corp. 
+
+Good afternoon, and welcome to FedEx Corporation&#39;s third quarter earnings conference call. The third quarter earnings 
+release, Form 10-Q and stat book are on our website at investors.fedex.com. This call and the accompanying slides are 
+being streamed from our website. 
+
+During our Q&amp;A session, callers will be limited to one question to allow us to accommodate all those who would like to 
+participate. Certain statements in this conference call may be considered forward
+
+--- preview curr_text ---
+ FedEx Q4 FY25 Earnings Call Transcript – June 24, 2025 
+
+Rajesh Subramaniam 
+President, Chief Executive Officer &amp; Director, FedEx Corp. 
+
+Thank you, operator. Before we begin, I want to take a few minutes to honor someone who meant a great deal to this 
+company, the business community, his beloved family, and to me personally. It feels strange to be here with you all so 
+soon after his sudden passing. And it is difficult to put into words the tremendous loss felt by all who knew Frederick W. 
+Smith. But Fred was a man grounded by a mission. And he would tell us to stay focused on the business 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2.2 Novelty scoring</span>
+<span class="n">prev_s</span> <span class="o">=</span> <span class="n">split_sentences</span><span class="p">(</span><span class="n">prev_text</span><span class="p">)</span>
+<span class="n">curr_s</span> <span class="o">=</span> <span class="n">split_sentences</span><span class="p">(</span><span class="n">curr_text</span><span class="p">)</span>
+<span class="n">vec</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">20000</span><span class="p">)</span>
+<span class="n">Xp</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">prev_s</span><span class="p">)</span>
+<span class="n">Xc</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">curr_s</span><span class="p">)</span>
+<span class="n">sims</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">Xc</span><span class="p">,</span> <span class="n">Xp</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">nov</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">sims</span>
+<span class="n">df_curr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;sentence&#39;</span><span class="p">:</span> <span class="n">curr_s</span><span class="p">,</span> <span class="s1">&#39;novelty&#39;</span><span class="p">:</span> <span class="n">nov</span><span class="p">})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;novelty&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df_curr</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-a5ccda96-fbea-401a-b54e-2ac9d9022c37" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sentence</th>
+      <th>novelty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>527</th>
+      <td>So, condolences to family, friends and colleag...</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>487</th>
+      <td>So, apologize for that slight delay.</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>353</th>
+      <td>And that U.S.</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>280</th>
+      <td>It \nruns across and is part of our culture here.</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>But Fred was a man grounded by a mission.</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>It feels strange to be here with you all so \n...</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Smith.</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>74</th>
+      <td>We continue to apply our digital platform-base...</td>
+      <td>0.831813</td>
+    </tr>
+    <tr>
+      <th>75</th>
+      <td>These solutions support a wide range \nof stak...</td>
+      <td>0.828557</td>
+    </tr>
+    <tr>
+      <th>541</th>
+      <td>The scale of FedEx comes into play in these ki...</td>
+      <td>0.828250</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-a5ccda96-fbea-401a-b54e-2ac9d9022c37')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-a5ccda96-fbea-401a-b54e-2ac9d9022c37 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-a5ccda96-fbea-401a-b54e-2ac9d9022c37');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    <div id="df-69d26f09-b242-4e15-ac73-6706d61ef1f3">
+      <button class="colab-df-quickchart" onclick="quickchart('df-69d26f09-b242-4e15-ac73-6706d61ef1f3')"
+                title="Suggest charts"
+                style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+      <script>
+        async function quickchart(key) {
+          const quickchartButtonEl =
+            document.querySelector('#' + key + ' button');
+          quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+          quickchartButtonEl.classList.add('colab-df-spinner');
+          try {
+            const charts = await google.colab.kernel.invokeFunction(
+                'suggestCharts', [key], {});
+          } catch (error) {
+            console.error('Error during call to suggestCharts:', error);
+          }
+          quickchartButtonEl.classList.remove('colab-df-spinner');
+          quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+        }
+        (() => {
+          let quickchartButtonEl =
+            document.querySelector('#df-69d26f09-b242-4e15-ac73-6706d61ef1f3 button');
+          quickchartButtonEl.style.display =
+            google.colab.kernel.accessAllowed ? 'block' : 'none';
+        })();
+      </script>
+    </div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+<section id="lets-initiate-the-llm">
+<h3><span class="section-number">18.5.1. </span>Lets initiate the LLM<a class="headerlink" href="#lets-initiate-the-llm" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">google</span><span class="w"> </span><span class="kn">import</span> <span class="n">genai</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Ensure the client uses the key from the environment</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">genai</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;AIzaSyD9OEQ1dKzXNvh1oS4eYUpu3hxpDrcSoBs&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="putting-the-llm-to-work">
+<h3><span class="section-number">18.5.2. </span>Putting the LLM to work<a class="headerlink" href="#putting-the-llm-to-work" title="Link to this heading">#</a></h3>
+<p>Two pieces</p>
+<ol class="arabic simple">
+<li><p>(The How) What the LLM will do. Needs to be very specific</p></li>
+<li><p>(The What) The text that will analyse</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select model</span>
+<span class="n">model_id</span> <span class="o">=</span> <span class="s2">&quot;gemini-2.5-flash&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using model: </span><span class="si">{</span><span class="n">model_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Combine texts into a single string</span>
+<span class="n">user_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">--- PREVIOUS EARNINGS CALL ---</span>
+<span class="si">{</span><span class="n">prev_text</span><span class="si">}</span>
+
+<span class="s2">--- CURRENT EARNINGS CALL ---</span>
+<span class="si">{</span><span class="n">curr_text</span><span class="si">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Updated system message to request specific JSON structure</span>
+<span class="n">system_msg</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="s1">&#39;Act as an equity analyst. Comparing with the previous_call text, for each sentence from the current earnings call, decide if it is surprising vs the prior call AND likely to be market-moving. &#39;</span>
+  <span class="s1">&#39;Use categories: guidance, demand, margins, capital_allocation, network/operations, macro, costs, other. &#39;</span>
+  <span class="s1">&#39;Return a JSON object with a single key &quot;surprising_claims&quot; containing an array of objects with fields: claim, category, direction (up/down/neutral), is_surprising (bool), market_relevance (low/med/high), rationale, confidence. &#39;</span>
+  <span class="s1">&#39;Only include sentences that are both surprising AND have medium or high market_relevance.&#39;</span>
+<span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">generate_content</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model_id</span><span class="p">,</span>
+        <span class="n">contents</span><span class="o">=</span><span class="n">user_prompt</span><span class="p">,</span>
+        <span class="n">config</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;system_instruction&#39;</span><span class="p">:</span> <span class="n">system_msg</span><span class="p">,</span>
+            <span class="s1">&#39;response_mime_type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+    <span class="c1"># Parse response and assign to fedex_res</span>
+    <span class="n">fedex_res</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="c1"># print(json.dumps(fedex_res, indent=2))</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error generating content:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s1">&#39;response&#39;</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Raw response text:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+<span class="n">fedex_res</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">fedex_res</span><span class="p">[</span><span class="s1">&#39;surprising_claims&#39;</span><span class="p">])</span>
+<span class="n">fedex_res</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using model: gemini-2.5-flash
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-d9aab805-8013-45f7-b33a-cbc846f93168" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>claim</th>
+      <th>category</th>
+      <th>direction</th>
+      <th>is_surprising</th>
+      <th>market_relevance</th>
+      <th>rationale</th>
+      <th>confidence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>For FY 2026, we expect to achieve $1 billion o...</td>
+      <td>costs</td>
+      <td>up</td>
+      <td>True</td>
+      <td>high</td>
+      <td>The previous call indicated an expectation of ...</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>We will also continue to repurchase shares and...</td>
+      <td>capital_allocation</td>
+      <td>up</td>
+      <td>True</td>
+      <td>high</td>
+      <td>While the previous call provided FY25 capital ...</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>We're currently planning for FY 2026 CapEx to ...</td>
+      <td>capital_allocation</td>
+      <td>up</td>
+      <td>True</td>
+      <td>high</td>
+      <td>The previous call guided FY25 CapEx down to $4...</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>We are only providing first quarter outlook at...</td>
+      <td>guidance</td>
+      <td>down</td>
+      <td>True</td>
+      <td>high</td>
+      <td>The CFO explicitly stated in the previous call...</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>This translates to a Q1 adjusted EPS range of ...</td>
+      <td>guidance</td>
+      <td>neutral</td>
+      <td>False</td>
+      <td>high</td>
+      <td>This is new, concrete guidance for the upcomin...</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Europe remains a significant opportunity for l...</td>
+      <td>costs</td>
+      <td>up</td>
+      <td>True</td>
+      <td>medium</td>
+      <td>While the previous call noted ongoing European...</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>last month, we named Brad Martin as Chairman o...</td>
+      <td>network/operations</td>
+      <td>up</td>
+      <td>True</td>
+      <td>high</td>
+      <td>The previous call only mentioned a 'comprehens...</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Our current expectation is for flat to 2% reve...</td>
+      <td>guidance</td>
+      <td>down</td>
+      <td>True</td>
+      <td>high</td>
+      <td>While the USPS contract expiration was known, ...</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Following the April 2 tariff announcement, cus...</td>
+      <td>demand</td>
+      <td>down</td>
+      <td>True</td>
+      <td>high</td>
+      <td>The previous call downplayed the impact of de ...</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>The top-end of the range assumes current favor...</td>
+      <td>demand</td>
+      <td>neutral</td>
+      <td>True</td>
+      <td>medium</td>
+      <td>In Q4, US domestic volumes held up well with a...</td>
+      <td>medium</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>At Freight, we forecast revenue to decline sli...</td>
+      <td>demand</td>
+      <td>down</td>
+      <td>True</td>
+      <td>medium</td>
+      <td>The previous call anticipated Q4 Freight reven...</td>
+      <td>medium</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>On a consolidated basis, we delivered an 8% in...</td>
+      <td>margins</td>
+      <td>up</td>
+      <td>True</td>
+      <td>high</td>
+      <td>While Q4 results are new, achieving an 8% incr...</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>We reduced capacity on our Asia-to-Americas la...</td>
+      <td>network/operations</td>
+      <td>up</td>
+      <td>True</td>
+      <td>high</td>
+      <td>The previous call highlighted Tricolor's benef...</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Additionally, our CapEx as a percentage of rev...</td>
+      <td>capital_allocation</td>
+      <td>up</td>
+      <td>True</td>
+      <td>high</td>
+      <td>While CapEx reduction was a theme, this specif...</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Notably, this [material headwind on Asia-to-US...</td>
+      <td>macro</td>
+      <td>down</td>
+      <td>True</td>
+      <td>high</td>
+      <td>This explicitly states that a material headwin...</td>
+      <td>high</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-d9aab805-8013-45f7-b33a-cbc846f93168')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-d9aab805-8013-45f7-b33a-cbc846f93168 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-d9aab805-8013-45f7-b33a-cbc846f93168');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    <div id="df-2b7e5a32-822f-439e-88d7-a37ea8088bfe">
+      <button class="colab-df-quickchart" onclick="quickchart('df-2b7e5a32-822f-439e-88d7-a37ea8088bfe')"
+                title="Suggest charts"
+                style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+      <script>
+        async function quickchart(key) {
+          const quickchartButtonEl =
+            document.querySelector('#' + key + ' button');
+          quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+          quickchartButtonEl.classList.add('colab-df-spinner');
+          try {
+            const charts = await google.colab.kernel.invokeFunction(
+                'suggestCharts', [key], {});
+          } catch (error) {
+            console.error('Error during call to suggestCharts:', error);
+          }
+          quickchartButtonEl.classList.remove('colab-df-spinner');
+          quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+        }
+        (() => {
+          let quickchartButtonEl =
+            document.querySelector('#df-2b7e5a32-822f-439e-88d7-a37ea8088bfe button');
+          quickchartButtonEl.style.display =
+            google.colab.kernel.accessAllowed ? 'block' : 'none';
+        })();
+      </script>
+    </div>
+
+  <div id="id_bc75a24e-931f-486e-8dfa-981db5aab250">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('fedex_res')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_bc75a24e-931f-486e-8dfa-981db5aab250 button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('fedex_res');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+</section>
+</section>
+<section id="fomc-press-conference-likely-marketmoving-lines">
+<h2><span class="section-number">18.6. </span>3) FOMC Press Conference: likely market‑moving lines<a class="headerlink" href="#fomc-press-conference-likely-marketmoving-lines" title="Link to this heading">#</a></h2>
+<p><strong>Method:</strong> novelty + hawk/dove tone → Gemini vetting to flag likely market movers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3.1 Fetch two FOMC transcripts (or fallback) — edit URLs for specific dates when teaching</span>
+<span class="n">fomc_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20250618.pdf&#39;</span><span class="p">,</span><span class="s1">&#39;https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20250730.pdf&#39;</span><span class="p">]</span>
+
+
+
+<span class="n">fomc_urls_sorted</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fomc_urls</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">parse_quarter_key</span><span class="p">)</span>
+<span class="n">prev_url</span><span class="p">,</span> <span class="n">curr_url</span> <span class="o">=</span> <span class="n">fomc_urls_sorted</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">fomc_urls_sorted</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prev URL:&quot;</span><span class="p">,</span> <span class="n">prev_url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Curr URL:&quot;</span><span class="p">,</span> <span class="n">curr_url</span><span class="p">)</span>
+
+<span class="c1"># Extract text</span>
+<span class="n">prev_text</span> <span class="o">=</span> <span class="n">pdf_bytes_to_text</span><span class="p">(</span><span class="n">fetch_pdf_bytes</span><span class="p">(</span><span class="n">prev_url</span><span class="p">))</span>
+<span class="n">curr_text</span> <span class="o">=</span> <span class="n">pdf_bytes_to_text</span><span class="p">(</span><span class="n">fetch_pdf_bytes</span><span class="p">(</span><span class="n">curr_url</span><span class="p">))</span>
+
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Lengths -&gt; prev:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">prev_text</span><span class="p">),</span> <span class="s1">&#39;curr:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">curr_text</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- preview prev_text ---</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">prev_text</span><span class="p">[:</span><span class="mi">600</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- preview curr_text ---</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">curr_text</span><span class="p">[:</span><span class="mi">600</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prev URL: https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20250618.pdf
+Curr URL: https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20250730.pdf
+Fetched https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20250618.pdf | status=200 | bytes=217624 | type=application/pdf
+Fetched https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20250730.pdf | status=200 | bytes=222261 | type=application/pdf
+Lengths -&gt; prev: 56626 curr: 47774
+
+--- preview prev_text ---
+ June 18, 2025 
+
+  Chair Powell’s Press Conference 
+
+FINAL 
+
+Transcript of Chair Powell’s Press Conference 
+June 18, 2025 
+
+CHAIR POWELL.  Good afternoon.  My colleagues and I remain squarely focused on 
+
+achieving our dual-mandate goals of maximum employment and stable prices for the benefit of 
+
+the American people.  Despite elevated uncertainty, the economy is in a solid position.  The 
+
+unemployment rate remains low, and the labor market is at or near maximum employment.  
+
+Inflation has come down a great deal but has been running somewhat above our 2 percent longer-
+
+run objective. 
+
+In su
+
+--- preview curr_text ---
+ July 30, 2025 
+
+  Chair Powell’s Press Conference 
+
+FINAL 
+
+Transcript of Chair Powell’s Press Conference 
+July 30, 2025 
+
+CHAIR POWELL.  Good afternoon.  My colleagues and I remain squarely focused on 
+
+achieving our dual-mandate goals of maximum employment and stable prices for the benefit of 
+
+the American people.  Despite elevated uncertainty, the economy is in a solid position.  The 
+
+unemployment rate remains low, and the labor market is at or near maximum employment.  
+
+Inflation has been running somewhat above our 2 percent longer-run objective. 
+
+In support of our goals, today the Fed
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3.2 Compute novelty + simple hawk/dove tone</span>
+<span class="n">prev_s</span> <span class="o">=</span> <span class="n">split_sentences</span><span class="p">(</span><span class="n">prev_text</span><span class="p">)</span>
+<span class="n">curr_s</span> <span class="o">=</span> <span class="n">split_sentences</span><span class="p">(</span><span class="n">curr_text</span><span class="p">)</span>
+<span class="n">vec</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">20000</span><span class="p">)</span>
+<span class="n">Xp</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">prev_s</span><span class="p">)</span>
+<span class="n">Xc</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">curr_s</span><span class="p">)</span>
+<span class="n">sims</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">Xc</span><span class="p">,</span> <span class="n">Xp</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">nov</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">sims</span>
+
+<span class="n">hawk</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="s1">&#39;tighten tightening restrictive inflation persistent upside overheating strong labor vigilantly price stability hikes higher longer&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+<span class="n">dove</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="s1">&#39;ease easing lower cut disinflation confidence balanced downside progress softening slack&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">tone</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[A-Za-z]+&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">w</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">hawk</span><span class="p">)</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">w</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dove</span><span class="p">)</span>
+<span class="n">tones</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">tone</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">curr_s</span><span class="p">])</span>
+
+<span class="n">df_f</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;sentence&#39;</span><span class="p">:</span> <span class="n">curr_s</span><span class="p">,</span> <span class="s1">&#39;novelty&#39;</span><span class="p">:</span> <span class="n">nov</span><span class="p">,</span> <span class="s1">&#39;tone&#39;</span><span class="p">:</span> <span class="n">tones</span><span class="p">})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;novelty&#39;</span><span class="p">,</span><span class="s1">&#39;tone&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
+<span class="n">df_f</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-2c5aabe8-acc8-4307-9947-7a30f479e5df" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sentence</th>
+      <th>novelty</th>
+      <th>tone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>193</th>
+      <td>That’s inefficient.</td>
+      <td>1.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>198</th>
+      <td>Ideally, we do it efficiently.</td>
+      <td>1.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>215</th>
+      <td>And that’s what we do.</td>
+      <td>1.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>229</th>
+      <td>It was an honor to host him.</td>
+      <td>1.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>305</th>
+      <td>Washing machines were tariffed, but, but, but ...</td>
+      <td>1.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>360</th>
+      <td>What will it take?</td>
+      <td>1.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>401</th>
+      <td>And we do all of \n\nthat.</td>
+      <td>1.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>406</th>
+      <td>Jay O’Brien.</td>
+      <td>1.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>407</th>
+      <td>JAY O’BRIEN.</td>
+      <td>1.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>412</th>
+      <td>He has personally pressured you.</td>
+      <td>1.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>427</th>
+      <td>Maria Eloisa.</td>
+      <td>1.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>428</th>
+      <td>MARIA ELOISA CAPURRO.</td>
+      <td>1.0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-2c5aabe8-acc8-4307-9947-7a30f479e5df')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-2c5aabe8-acc8-4307-9947-7a30f479e5df button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-2c5aabe8-acc8-4307-9947-7a30f479e5df');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    <div id="df-29f45155-9dde-45b5-9a85-2d55cb252f94">
+      <button class="colab-df-quickchart" onclick="quickchart('df-29f45155-9dde-45b5-9a85-2d55cb252f94')"
+                title="Suggest charts"
+                style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+      <script>
+        async function quickchart(key) {
+          const quickchartButtonEl =
+            document.querySelector('#' + key + ' button');
+          quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+          quickchartButtonEl.classList.add('colab-df-spinner');
+          try {
+            const charts = await google.colab.kernel.invokeFunction(
+                'suggestCharts', [key], {});
+          } catch (error) {
+            console.error('Error during call to suggestCharts:', error);
+          }
+          quickchartButtonEl.classList.remove('colab-df-spinner');
+          quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+        }
+        (() => {
+          let quickchartButtonEl =
+            document.querySelector('#df-29f45155-9dde-45b5-9a85-2d55cb252f94 button');
+          quickchartButtonEl.style.display =
+            google.colab.kernel.accessAllowed ? 'block' : 'none';
+        })();
+      </script>
+    </div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">user_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">--- PREVIOUS EARNINGS CALL ---</span>
+<span class="si">{</span><span class="n">prev_text</span><span class="si">}</span>
+
+<span class="s2">--- CURRENT EARNINGS CALL ---</span>
+<span class="si">{</span><span class="n">curr_text</span><span class="si">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Updated system message to request specific JSON structure</span>
+<span class="n">system_msg</span> <span class="o">=</span> <span class="p">(</span>
+   <span class="s1">&#39;Act as a macro-rates analyst. Comparing with the previous_transcript text, for each sentence from the current trasncript text, decide if it is surprising vs the prior trasncript AND likely to be market-moving. &#39;</span>
+  <span class="s1">&#39;Use categories: forward path of policy, balance‑sheet pace, confidence about inflation path, changes in risk balance, financial conditions. &#39;</span>
+  <span class="s1">&#39;Return a JSON object with a single key &quot;surprising_claims&quot; containing an array of objects with fields: claim, category,positive or negative for market, positive or negative for long term bonds, is_surprising (bool), market_relevance (low/med/high), rationale, confidence. &#39;</span>
+  <span class="s1">&#39;Only include sentences that are both surprising AND have medium or high market_relevance.&#39;</span>
+<span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">generate_content</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model_id</span><span class="p">,</span>
+        <span class="n">contents</span><span class="o">=</span><span class="n">user_prompt</span><span class="p">,</span>
+        <span class="n">config</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;system_instruction&#39;</span><span class="p">:</span> <span class="n">system_msg</span><span class="p">,</span>
+            <span class="s1">&#39;response_mime_type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+    <span class="c1"># Parse response and assign to fedex_res</span>
+    <span class="n">fedex_res</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="c1"># print(json.dumps(fedex_res, indent=2))</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error generating content:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s1">&#39;response&#39;</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Raw response text:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+<span class="n">fedex_res</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">fedex_res</span><span class="p">[</span><span class="s1">&#39;surprising_claims&#39;</span><span class="p">])</span>
+<span class="n">fedex_res</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-35ea6488-1fcb-4f53-b6da-2c6ade3cc263" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>claim</th>
+      <th>category</th>
+      <th>positive_or_negative_for_market</th>
+      <th>positive_or_negative_for_long_term_bonds</th>
+      <th>is_surprising</th>
+      <th>market_relevance</th>
+      <th>rationale</th>
+      <th>confidence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Financial conditions are accommodative, and th...</td>
+      <td>financial conditions</td>
+      <td>negative</td>
+      <td>negative</td>
+      <td>True</td>
+      <td>high</td>
+      <td>In June, Chair Powell characterized policy as ...</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>In coming months, we’ll receive a good amount ...</td>
+      <td>forward path of policy</td>
+      <td>positive</td>
+      <td>positive</td>
+      <td>True</td>
+      <td>high</td>
+      <td>In June, Powell was non-committal on the timin...</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>All that said, there’s also downside risk to t...</td>
+      <td>changes in risk balance</td>
+      <td>positive</td>
+      <td>positive</td>
+      <td>True</td>
+      <td>high</td>
+      <td>In June, Powell described labor market cooling...</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Higher tariffs have begun to show through more...</td>
+      <td>confidence about inflation path</td>
+      <td>negative</td>
+      <td>negative</td>
+      <td>True</td>
+      <td>medium</td>
+      <td>In June, Powell stated that tariffs were 'like...</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>We will, through our tools, make sure that thi...</td>
+      <td>confidence about inflation path</td>
+      <td>negative</td>
+      <td>negative</td>
+      <td>True</td>
+      <td>medium</td>
+      <td>While the Fed's commitment to price stability ...</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>The fact that it’s getting into balance due to...</td>
+      <td>changes in risk balance</td>
+      <td>positive</td>
+      <td>positive</td>
+      <td>True</td>
+      <td>high</td>
+      <td>In June, the labor market was generally charac...</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>You could argue we are, a bit, “looking throug...</td>
+      <td>forward path of policy</td>
+      <td>positive</td>
+      <td>positive</td>
+      <td>True</td>
+      <td>medium</td>
+      <td>In June, the discussion around tariffs focused...</td>
+      <td>medium</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-35ea6488-1fcb-4f53-b6da-2c6ade3cc263')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-35ea6488-1fcb-4f53-b6da-2c6ade3cc263 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-35ea6488-1fcb-4f53-b6da-2c6ade3cc263');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    <div id="df-af9c83f6-d299-465d-9ed5-42c0d37ad85d">
+      <button class="colab-df-quickchart" onclick="quickchart('df-af9c83f6-d299-465d-9ed5-42c0d37ad85d')"
+                title="Suggest charts"
+                style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+      <script>
+        async function quickchart(key) {
+          const quickchartButtonEl =
+            document.querySelector('#' + key + ' button');
+          quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+          quickchartButtonEl.classList.add('colab-df-spinner');
+          try {
+            const charts = await google.colab.kernel.invokeFunction(
+                'suggestCharts', [key], {});
+          } catch (error) {
+            console.error('Error during call to suggestCharts:', error);
+          }
+          quickchartButtonEl.classList.remove('colab-df-spinner');
+          quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+        }
+        (() => {
+          let quickchartButtonEl =
+            document.querySelector('#df-af9c83f6-d299-465d-9ed5-42c0d37ad85d button');
+          quickchartButtonEl.style.display =
+            google.colab.kernel.accessAllowed ? 'block' : 'none';
+        })();
+      </script>
+    </div>
+
+  <div id="id_26cae23d-a659-4343-8053-d6d84f412c07">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('fedex_res')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_26cae23d-a659-4343-8053-d6d84f412c07 button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('fedex_res');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+</section>
+<section id="forecasting-pitfalls-lookahead-bias-leakage-demo">
+<h2><span class="section-number">18.7. </span>4) Forecasting Pitfalls: look‑ahead bias &amp; leakage demo<a class="headerlink" href="#forecasting-pitfalls-lookahead-bias-leakage-demo" title="Link to this heading">#</a></h2>
+<p>Two demos: (a) TF‑IDF fit leakage + random CV, (b) time‑aware split without leakage.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">user_prompt</span> <span class="o">=</span> <span class="s1">&#39;Act as a hedge fund manager. Assume you only have information up to 2019. Predict which 10 stocks would perform worse and the 10 the best if a global pandemic would hit the economy.   Please Return a json with the ticker, qualitative prediction,quantititative prediction, and your rational.&#39;</span>
+
+<span class="c1">#user_prompt = &#39;Act as a hedge fund manager. Assume you only have information up to 2019. Predict which 10 stocks would perform worse and the 10 the best if a global pandemic would hit the economy.  Do the very best you can do in purusing this forecast. Please Return a json with the ticker, qualitative prediction,quantititative prediction, and your rational.&#39;</span>
+
+
+<span class="c1">#user_prompt = &#39;Act as a hedge fund manager. Assume you only have information up to 2021. Predict which 10 stocks would perform worse and the 10 the best if a global pandemic would hit the economy.   Please Return a json with the ticker, qualitative prediction,quantititative prediction, and your rational.&#39;</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">generate_content</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model_id</span><span class="p">,</span>
+    <span class="n">contents</span><span class="o">=</span><span class="n">user_prompt</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;response_mime_type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create DataFrame for best performers</span>
+<span class="n">best_performers_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;best_performers&#39;</span><span class="p">])</span>
+
+<span class="c1"># Create DataFrame for worst performers</span>
+<span class="n">worst_performers_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;worst_performers&#39;</span><span class="p">])</span>
+
+<span class="c1"># Concatenate the two DataFrames using pd.concat</span>
+<span class="c1"># ignore_index=True ensures the new DataFrame has a continuous index</span>
+<span class="n">final_predictions_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">best_performers_df</span><span class="p">,</span> <span class="n">worst_performers_df</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">final_predictions_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-998a34d4-2a8b-4b10-8f4a-f62368984cce" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ticker</th>
+      <th>qualitative_prediction</th>
+      <th>quantitative_prediction</th>
+      <th>rational</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AMZN</td>
+      <td>Best Performer</td>
+      <td>+45%</td>
+      <td>E-commerce will become the primary way for peo...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NFLX</td>
+      <td>Best Performer</td>
+      <td>+30%</td>
+      <td>As people are confined to their homes, demand ...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>MSFT</td>
+      <td>Best Performer</td>
+      <td>+25%</td>
+      <td>Microsoft's cloud services (Azure) will be cru...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ZM</td>
+      <td>Best Performer</td>
+      <td>+80%</td>
+      <td>Zoom, having recently IPO'd, is perfectly posi...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>WMT</td>
+      <td>Best Performer</td>
+      <td>+20%</td>
+      <td>As an essential retailer, Walmart will see a s...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>PG</td>
+      <td>Best Performer</td>
+      <td>+15%</td>
+      <td>Procter &amp; Gamble produces essential consumer s...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>NVDA</td>
+      <td>Best Performer</td>
+      <td>+35%</td>
+      <td>NVIDIA's GPUs power data centers, which are es...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>MRNA</td>
+      <td>Best Performer</td>
+      <td>+70%</td>
+      <td>As a biotech company focused on mRNA technolog...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>CHGG</td>
+      <td>Best Performer</td>
+      <td>+40%</td>
+      <td>With schools and universities likely to close,...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>ATVI</td>
+      <td>Best Performer</td>
+      <td>+25%</td>
+      <td>Video games provide entertainment and social i...</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>UAL</td>
+      <td>Worst Performer</td>
+      <td>-60%</td>
+      <td>Airlines are directly hit by travel bans and f...</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>CCL</td>
+      <td>Worst Performer</td>
+      <td>-70%</td>
+      <td>Cruise lines are perceived as high-risk enviro...</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>MAR</td>
+      <td>Worst Performer</td>
+      <td>-50%</td>
+      <td>Hotels will suffer from a drastic reduction in...</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>BA</td>
+      <td>Worst Performer</td>
+      <td>-45%</td>
+      <td>As airlines struggle or go bankrupt, orders fo...</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>XOM</td>
+      <td>Worst Performer</td>
+      <td>-40%</td>
+      <td>Global economic slowdown and travel restrictio...</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>M</td>
+      <td>Worst Performer</td>
+      <td>-55%</td>
+      <td>Department stores, already struggling against ...</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>LYV</td>
+      <td>Worst Performer</td>
+      <td>-65%</td>
+      <td>Live events, concerts, and festivals will be e...</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>GPS</td>
+      <td>Worst Performer</td>
+      <td>-50%</td>
+      <td>Apparel retail is discretionary. With consumer...</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>DIS</td>
+      <td>Worst Performer</td>
+      <td>-40%</td>
+      <td>Disney's diversified revenue streams are all h...</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>SPG</td>
+      <td>Worst Performer</td>
+      <td>-50%</td>
+      <td>Mall operators will see tenant bankruptcies, r...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-998a34d4-2a8b-4b10-8f4a-f62368984cce')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-998a34d4-2a8b-4b10-8f4a-f62368984cce button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-998a34d4-2a8b-4b10-8f4a-f62368984cce');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    <div id="df-e1342ed9-a748-4be9-aa42-981f3d24237b">
+      <button class="colab-df-quickchart" onclick="quickchart('df-e1342ed9-a748-4be9-aa42-981f3d24237b')"
+                title="Suggest charts"
+                style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+      <script>
+        async function quickchart(key) {
+          const quickchartButtonEl =
+            document.querySelector('#' + key + ' button');
+          quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+          quickchartButtonEl.classList.add('colab-df-spinner');
+          try {
+            const charts = await google.colab.kernel.invokeFunction(
+                'suggestCharts', [key], {});
+          } catch (error) {
+            console.error('Error during call to suggestCharts:', error);
+          }
+          quickchartButtonEl.classList.remove('colab-df-spinner');
+          quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+        }
+        (() => {
+          let quickchartButtonEl =
+            document.querySelector('#df-e1342ed9-a748-4be9-aa42-981f3d24237b button');
+          quickchartButtonEl.style.display =
+            google.colab.kernel.accessAllowed ? 'block' : 'none';
+        })();
+      </script>
+    </div>
+
+  <div id="id_d5175951-719a-4060-b990-8bbeea20959d">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('final_predictions_df')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_d5175951-719a-4060-b990-8bbeea20959d button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('final_predictions_df');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+</section>
+<section id="how-to-fix-it">
+<h2><span class="section-number">18.8. </span>How to fix it?<a class="headerlink" href="#how-to-fix-it" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Always <strong>time‑split</strong> (train on <code class="docutils literal notranslate"><span class="pre">t&lt;=T</span></code>, test on <code class="docutils literal notranslate"><span class="pre">t&gt;T</span></code>).</p></li>
+<li><p>Hard to do with sophisitcated LLMS!</p></li>
+<li><p>Fit tokenizers/embeddings on <strong>train only</strong> (or use historical corpora).</p></li>
+<li><p>Need to develop your own personall gpt</p></li>
+<li><p>Alternative is not to use LLM direct for prediction, but instead use to construct signals from text and then implement sample splits</p></li>
+<li><p>When constructing the signals better be extra careful what you are asking!</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/Finance"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="LeverageandShorting.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>Levering up and Shorting</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../additional/additional.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">19. </span>Additional Statistics Material</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-ll-build">18.1. What you’ll build</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">18.2. Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">18.3. 0) Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-if-needed">18.3.1. Install (if needed)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilities-fetch-preprocess-transcripts">18.4. 1) Utilities: fetch &amp; preprocess transcripts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#earnings-call-whats-surprising-vs-the-previous-call-fedex">18.5. 2) Earnings Call: What’s surprising vs the previous call? (FedEx)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lets-initiate-the-llm">18.5.1. Lets initiate the LLM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-the-llm-to-work">18.5.2. Putting the LLM to work</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fomc-press-conference-likely-marketmoving-lines">18.6. 3) FOMC Press Conference: likely market‑moving lines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forecasting-pitfalls-lookahead-bias-leakage-demo">18.7. 4) Forecasting Pitfalls: look‑ahead bias &amp; leakage demo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-fix-it">18.8. How to fix it?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alan Moreira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2021 Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
