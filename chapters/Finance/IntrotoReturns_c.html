@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Introduction to Asset Returns &#8212; Data Driven Investing with Python</title>
+    <title>4. Introduction to Asset Returns &#8212; Data Driven Investing with Python</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/book.css?v=c2893119" />
@@ -65,7 +65,7 @@
     <link rel="icon" href="../../_static/figuremain2.jpg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="4.5. The choice of frequency and Annualization of returns" href="TheChoiceofFrequency.html" />
+    <link rel="next" title="4.11. The choice of frequency and Annualization of returns" href="TheChoiceofFrequency.html" />
     <link rel="prev" title="3.7. Plotting" href="../essentials/plotting.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -176,7 +176,7 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../01/what-is-quant-investing.html">1. What is Data Driven Investing?</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../01/statistical-techniques.html">1.1. Statistical Techniques</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../01/computational-tools.html">1.2. Computational tools</a></li>
@@ -207,41 +207,42 @@
 <li class="toctree-l2"><a class="reference internal" href="../essentials/plotting.html">3.7. Plotting</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="IntrotoReturns.html">4. Introduction to Asset Returns</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="TheChoiceofFrequency.html">4.5. The Choice of Frequency and Annualization of Returns</a></li>
-<li class="toctree-l2"><a class="reference internal" href="UsingAPI.html">4.6. Data APIs</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">4. Introduction to Asset Returns</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="TheChoiceofFrequency.html">4.11. The Choice of Frequency and Annualization of Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UsingAPI.html">4.12. Data APIs</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="FactorModels.html">5. Factor Models</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="PortfolioMath.html">6. Portfolios</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../scientific/linear_algebra1.html">6.12. Linear Algebra Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Timing_c.html">5. Timing</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="FactorModels_c.html">7. Factor Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="PortfolioMath_c.html">8. Portfolios</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/linear_algebra1_c.html">8.13. Linear Algebra Review</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="CapitalAllocationI.html">7. Capital Allocation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="FactorModelEstimation.html">8. Factor Model Estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Timing.html">9. Timing Strategies</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="crosssectionalequitystrategies.html">10. Cross-Sectional Equity Strategies</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Momentum.html">10.18. Momentum factor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Factors.html">10.19. An overview of factors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CapitalAllocationI.html">9. Capital Allocation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FactorModelEstimation.html">10. Factor Model Estimation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="crosssectionalequitystrategies.html">11. Cross-Sectional Equity Strategies</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Momentum.html">11.18. Momentum factor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Factors.html">11.19. An overview of factors</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="CapitalAllocationII.html">11. Capital Allocation II</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Performance_evaluation.html">12. Performance Evaluation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="MachineLearning.html">13. Machine Learning in Finance</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="MultiFactorModels.html">14. Multi Factor Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="InterpretingFactorModels.html">14.7. 📊 Interpreting Factor Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CapitalAllocationII.html">12. Capital Allocation II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Performance_evaluation.html">13. Performance Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MachineLearning.html">14. Machine Learning in Finance</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="MultiFactorModels.html">15. Multi Factor Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="InterpretingFactorModels.html">15.7. 📊 Interpreting Factor Models</a></li>
 
 
 
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="RiskManagement.html">15. Risk Management</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TradingCosts.html">16. Liquidity and Trading Cost Management</a></li>
-<li class="toctree-l1"><a class="reference internal" href="LeverageandShorting.html">17. Leverage, Shorting, and Limits to Arbitrage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="LLMs.html">18. Gen AI and LLMs in Finance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../additional/additional.html">19. Additional Statistics Material</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Assignments/Assignments.html">20. Assignments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment1.html">20.1. Assignment 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RiskManagement.html">16. Risk Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TradingCosts.html">17. Liquidity and Trading Cost Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LeverageandShorting.html">18. Leverage, Shorting, and Limits to Arbitrage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LLMs.html">19. Gen AI and LLMs in Finance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../additional/additional.html">20. Additional Statistics Material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Assignments/Assignments.html">21. Assignments</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment1.html">21.1. Assignment 1</a></li>
 </ul>
 </details></li>
 </ul>
@@ -470,40 +471,40 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">🎯 Learning Objectives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">📋 Table of Contents</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">🛠️ Setup <a id="setup"></a></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-stock-return">What is a Stock Return? <a id="what-is-a-stock-return"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-core-question">The Core Question</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-return-formula">The Return Formula</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-computing-returns-from-data">Example: Computing Returns from Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-return-series">Visualizing the Return Series</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-distribution">Return Distribution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-statistics">Summary Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">4.1. 🎯 Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">4.2. 📋 Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">4.3. 🛠️ Setup <a id="setup"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-stock-return">4.4. What is a Stock Return? <a id="what-is-a-stock-return"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-core-question">4.4.1. The Core Question</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-return-formula">4.4.2. The Return Formula</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-computing-returns-from-data">4.4.3. Example: Computing Returns from Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-return-series">4.4.4. Visualizing the Return Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-distribution">4.4.5. Return Distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-statistics">4.4.6. Summary Statistics</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excess-returns">Excess Returns <a id="excess-returns"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-excess-returns">Why Excess Returns?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-risk-free-rate">Loading the Risk-Free Rate</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-excess-returns">Computing Excess Returns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excess-returns">4.5. Excess Returns <a id="excess-returns"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-excess-returns">4.5.1. Why Excess Returns?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-risk-free-rate">4.5.2. Loading the Risk-Free Rate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-excess-returns">4.5.3. Computing Excess Returns</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excess-returns-as-long-short-trading-strategies">Excess returns as long-short trading strategies</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#long-short-trading-strategies-are-self-financed">Long-short trading strategies are self-financed</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-premiums">Risk Premiums <a id="risk-premiums"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-excess-returns-to-risk-premiums">From Excess Returns to Risk Premiums</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-sharpe-ratio">The Sharpe Ratio</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-returns-the-power-of-compounding">Cumulative Returns: The Power of Compounding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excess-returns-as-long-short-trading-strategies">4.6. Excess returns as long-short trading strategies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#long-short-trading-strategies-are-self-financed">4.7. Long-short trading strategies are self-financed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-premiums">4.8. Risk Premiums <a id="risk-premiums"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-excess-returns-to-risk-premiums">4.8.1. From Excess Returns to Risk Premiums</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-sharpe-ratio">4.8.2. The Sharpe Ratio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-returns-the-power-of-compounding">4.8.3. Cumulative Returns: The Power of Compounding</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">📝 Exercises <a id="exercises"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-warm-up-basic-return-calculation">Exercise 1: Warm-up — Basic Return Calculation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-extension-another-stock">Exercise 2: Extension — Another Stock</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-open-ended-risk-analysis">Exercise 3: Open-ended — Risk Analysis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-challenge-rolling-analysis">Exercise 4: Challenge — Rolling Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">4.9. 📝 Exercises <a id="exercises"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-warm-up-basic-return-calculation">4.9.1. Exercise 1: Warm-up — Basic Return Calculation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-extension-another-stock">4.9.2. Exercise 2: Extension — Another Stock</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-open-ended-risk-analysis">4.9.3. Exercise 3: Open-ended — Risk Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-challenge-rolling-analysis">4.9.4. Exercise 4: Challenge — Rolling Analysis</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">🧠 Key Takeaways <a id="key-takeaways"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">4.10. 🧠 Key Takeaways <a id="key-takeaways"></a></a></li>
 </ul>
             </nav>
         </div>
@@ -516,9 +517,9 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-asset-returns">
-<h1>Introduction to Asset Returns<a class="headerlink" href="#introduction-to-asset-returns" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">4. </span>Introduction to Asset Returns<a class="headerlink" href="#introduction-to-asset-returns" title="Link to this heading">#</a></h1>
 <section id="learning-objectives">
-<h2>🎯 Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.1. </span>🎯 Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
 <p>By the end of this notebook, you will be able to:</p>
 <ol class="arabic simple">
 <li><p><strong>Define and compute total returns</strong> — From prices and dividends</p></li>
@@ -528,7 +529,7 @@ document.write(`
 </ol>
 </section>
 <section id="table-of-contents">
-<h2>📋 Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.2. </span>📋 Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference internal" href="#setup"><span class="xref myst">Setup</span></a></p></li>
 <li><p><a class="reference internal" href="#what-is-a-stock-return"><span class="xref myst">What is a Stock Return?</span></a></p></li>
@@ -540,7 +541,7 @@ document.write(`
 </section>
 <hr class="docutils" />
 <section id="setup">
-<h2>🛠️ Setup <a id="setup"></a><a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.3. </span>🛠️ Setup <a id="setup"></a><a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title 🛠️ Setup: Run this cell first (click to expand)</span>
@@ -573,15 +574,15 @@ document.write(`
 </section>
 <hr class="docutils" />
 <section id="what-is-a-stock-return">
-<h2>What is a Stock Return? <a id="what-is-a-stock-return"></a><a class="headerlink" href="#what-is-a-stock-return" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.4. </span>What is a Stock Return? <a id="what-is-a-stock-return"></a><a class="headerlink" href="#what-is-a-stock-return" title="Link to this heading">#</a></h2>
 <section id="the-core-question">
-<h3>The Core Question<a class="headerlink" href="#the-core-question" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.4.1. </span>The Core Question<a class="headerlink" href="#the-core-question" title="Link to this heading">#</a></h3>
 <p>Imagine you buy a stock today for <strong>$100</strong>.</p>
 <p>Tomorrow it could be worth <strong><span class="math notranslate nohighlight">\(105** or **\)</span>95</strong> or any other value.</p>
 <p>How do we measure this change in a standardized way?</p>
 </section>
 <section id="the-return-formula">
-<h3>The Return Formula<a class="headerlink" href="#the-return-formula" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.4.2. </span>The Return Formula<a class="headerlink" href="#the-return-formula" title="Link to this heading">#</a></h3>
 <p><strong>Total return</strong> measures percentage change including dividends:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -605,7 +606,7 @@ We use returns because they:</p>
 </div></blockquote>
 </section>
 <section id="example-computing-returns-from-data">
-<h3>Example: Computing Returns from Data<a class="headerlink" href="#example-computing-returns-from-data" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.4.3. </span>Example: Computing Returns from Data<a class="headerlink" href="#example-computing-returns-from-data" title="Link to this heading">#</a></h3>
 <p>Let’s load real stock data and compute returns. We’ll use UnitedHealth (UNH).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -969,7 +970,7 @@ This is expected—we lose one observation when computing returns.</p>
 </div></blockquote>
 </section>
 <section id="visualizing-the-return-series">
-<h3>Visualizing the Return Series<a class="headerlink" href="#visualizing-the-return-series" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.4.4. </span>Visualizing the Return Series<a class="headerlink" href="#visualizing-the-return-series" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot daily returns</span>
@@ -993,7 +994,7 @@ This is expected—we lose one observation when computing returns.</p>
 </div>
 </section>
 <section id="return-distribution">
-<h3>Return Distribution<a class="headerlink" href="#return-distribution" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.4.5. </span>Return Distribution<a class="headerlink" href="#return-distribution" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Histogram of daily returns</span>
@@ -1019,7 +1020,7 @@ This is expected—we lose one observation when computing returns.</p>
 </div>
 </section>
 <section id="summary-statistics">
-<h3>Summary Statistics<a class="headerlink" href="#summary-statistics" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.4.6. </span>Summary Statistics<a class="headerlink" href="#summary-statistics" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Key summary statistics</span>
@@ -1074,9 +1075,9 @@ Suppose your data is monthly how would you annualize?</p>
 </section>
 <hr class="docutils" />
 <section id="excess-returns">
-<h2>Excess Returns <a id="excess-returns"></a><a class="headerlink" href="#excess-returns" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.5. </span>Excess Returns <a id="excess-returns"></a><a class="headerlink" href="#excess-returns" title="Link to this heading">#</a></h2>
 <section id="why-excess-returns">
-<h3>Why Excess Returns?<a class="headerlink" href="#why-excess-returns" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.5.1. </span>Why Excess Returns?<a class="headerlink" href="#why-excess-returns" title="Link to this heading">#</a></h3>
 <p>A <strong>10% return</strong> sounds great, but what if risk-free bonds paid <strong>8%</strong>?</p>
 <p>The stock only gave you <strong>2% extra</strong> for taking on stock market risk.</p>
 <p><strong>Excess return</strong> = Return − Risk-free rate</p>
@@ -1086,7 +1087,7 @@ R^e_t = R_t - R^f_t
 \]</div>
 </section>
 <section id="loading-the-risk-free-rate">
-<h3>Loading the Risk-Free Rate<a class="headerlink" href="#loading-the-risk-free-rate" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.5.2. </span>Loading the Risk-Free Rate<a class="headerlink" href="#loading-the-risk-free-rate" title="Link to this heading">#</a></h3>
 <p>We use Kenneth French’s data library, which provides the 1-month T-bill rate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1589,7 +1590,7 @@ First few rows of df with new &#39;rf_daily&#39; column:
 </div>
 </section>
 <section id="computing-excess-returns">
-<h3>Computing Excess Returns<a class="headerlink" href="#computing-excess-returns" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.5.3. </span>Computing Excess Returns<a class="headerlink" href="#computing-excess-returns" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute excess return</span>
@@ -1634,7 +1635,7 @@ Subtracting a constant shifts the mean but doesn’t change volatility much.</p>
 </section>
 </section>
 <section id="excess-returns-as-long-short-trading-strategies">
-<h2>Excess returns as long-short trading strategies<a class="headerlink" href="#excess-returns-as-long-short-trading-strategies" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.6. </span>Excess returns as long-short trading strategies<a class="headerlink" href="#excess-returns-as-long-short-trading-strategies" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Excess returns are a nice way to look at an asset because it strips out the time-value of money aspect form it</p></li>
 <li><p>Excess returns is really the return on a strategy that invests 1 in the risky asset and finance the position by borrowing at the risk-free rate</p></li>
@@ -1646,7 +1647,7 @@ Subtracting a constant shifts the mean but doesn’t change volatility much.</p>
 </ul>
 </section>
 <section id="long-short-trading-strategies-are-self-financed">
-<h2>Long-short trading strategies are self-financed<a class="headerlink" href="#long-short-trading-strategies-are-self-financed" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.7. </span>Long-short trading strategies are self-financed<a class="headerlink" href="#long-short-trading-strategies-are-self-financed" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>This means that you don’t need any cash to invest in it</p></li>
 <li><p>you borrow all you need</p></li>
@@ -1658,9 +1659,9 @@ Subtracting a constant shifts the mean but doesn’t change volatility much.</p>
 </section>
 <hr class="docutils" />
 <section id="risk-premiums">
-<h2>Risk Premiums <a id="risk-premiums"></a><a class="headerlink" href="#risk-premiums" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.8. </span>Risk Premiums <a id="risk-premiums"></a><a class="headerlink" href="#risk-premiums" title="Link to this heading">#</a></h2>
 <section id="from-excess-returns-to-risk-premiums">
-<h3>From Excess Returns to Risk Premiums<a class="headerlink" href="#from-excess-returns-to-risk-premiums" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.8.1. </span>From Excess Returns to Risk Premiums<a class="headerlink" href="#from-excess-returns-to-risk-premiums" title="Link to this heading">#</a></h3>
 <p><strong>Risk premium</strong> = Expected excess return = <span class="math notranslate nohighlight">\(E[R - R^f]\)</span></p>
 <p>This is the <strong>expected</strong> compensation for bearing risk.</p>
 <p>In practice, we estimate it as the <strong>sample average</strong> of excess returns.</p>
@@ -1688,7 +1689,7 @@ Annual:      19.29%
 </div>
 </section>
 <section id="the-sharpe-ratio">
-<h3>The Sharpe Ratio<a class="headerlink" href="#the-sharpe-ratio" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.8.2. </span>The Sharpe Ratio<a class="headerlink" href="#the-sharpe-ratio" title="Link to this heading">#</a></h3>
 <p>How much return do we get <strong>per unit of risk</strong>?</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1727,7 +1728,7 @@ Annual:        0.45
 </div></blockquote>
 </section>
 <section id="cumulative-returns-the-power-of-compounding">
-<h3>Cumulative Returns: The Power of Compounding<a class="headerlink" href="#cumulative-returns-the-power-of-compounding" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.8.3. </span>Cumulative Returns: The Power of Compounding<a class="headerlink" href="#cumulative-returns-the-power-of-compounding" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute cumulative returns (wealth growth from $1)</span>
@@ -1764,9 +1765,9 @@ This is the total compensation you received for bearing stock risk.</p>
 </section>
 <hr class="docutils" />
 <section id="exercises">
-<h2>📝 Exercises <a id="exercises"></a><a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.9. </span>📝 Exercises <a id="exercises"></a><a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <section id="exercise-1-warm-up-basic-return-calculation">
-<h3>Exercise 1: Warm-up — Basic Return Calculation<a class="headerlink" href="#exercise-1-warm-up-basic-return-calculation" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.9.1. </span>Exercise 1: Warm-up — Basic Return Calculation<a class="headerlink" href="#exercise-1-warm-up-basic-return-calculation" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p><strong>🔧 Exercise:</strong></p>
 <p>A stock has the following prices over 4 days (no dividends):</p>
@@ -1822,7 +1823,7 @@ This is the total compensation you received for bearing stock risk.</p>
 </div>
 </details></section>
 <section id="exercise-2-extension-another-stock">
-<h3>Exercise 2: Extension — Another Stock<a class="headerlink" href="#exercise-2-extension-another-stock" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.9.2. </span>Exercise 2: Extension — Another Stock<a class="headerlink" href="#exercise-2-extension-another-stock" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p><strong>🤔 Think and Code:</strong></p>
 <p>Load data for another stock and compare to UNH:</p>
@@ -1860,7 +1861,7 @@ This is the total compensation you received for bearing stock risk.</p>
 </div>
 </details></section>
 <section id="exercise-3-open-ended-risk-analysis">
-<h3>Exercise 3: Open-ended — Risk Analysis<a class="headerlink" href="#exercise-3-open-ended-risk-analysis" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.9.3. </span>Exercise 3: Open-ended — Risk Analysis<a class="headerlink" href="#exercise-3-open-ended-risk-analysis" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p><strong>🤔 Think and Code:</strong></p>
 <p>You have $1 million invested in UNH:</p>
@@ -1923,7 +1924,7 @@ This is the total compensation you received for bearing stock risk.</p>
 </div>
 </details></section>
 <section id="exercise-4-challenge-rolling-analysis">
-<h3>Exercise 4: Challenge — Rolling Analysis<a class="headerlink" href="#exercise-4-challenge-rolling-analysis" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.9.4. </span>Exercise 4: Challenge — Rolling Analysis<a class="headerlink" href="#exercise-4-challenge-rolling-analysis" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p><strong>🔧 Exercise:</strong></p>
 <p>Compute and plot the <strong>rolling 252-day Sharpe Ratio</strong> for UNH:</p>
@@ -1970,7 +1971,7 @@ This is the total compensation you received for bearing stock risk.</p>
 </section>
 <hr class="docutils" />
 <section id="key-takeaways">
-<h2>🧠 Key Takeaways <a id="key-takeaways"></a><a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.10. </span>🧠 Key Takeaways <a id="key-takeaways"></a><a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><strong>Total Return</strong> = (P_t + D_t - P_{t-1}) / P_{t-1} — Captures price change AND dividends</p></li>
 <li><p><strong>Excess Return</strong> = Return − Risk-free rate — Measures compensation for risk</p></li>
@@ -2027,7 +2028,7 @@ This is the total compensation you received for bearing stock risk.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4.5. </span>The choice of frequency and Annualization of returns</p>
+        <p class="prev-next-title"><span class="section-number">4.11. </span>The choice of frequency and Annualization of returns</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -2047,40 +2048,40 @@ This is the total compensation you received for bearing stock risk.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">🎯 Learning Objectives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">📋 Table of Contents</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">🛠️ Setup <a id="setup"></a></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-stock-return">What is a Stock Return? <a id="what-is-a-stock-return"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-core-question">The Core Question</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-return-formula">The Return Formula</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-computing-returns-from-data">Example: Computing Returns from Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-return-series">Visualizing the Return Series</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-distribution">Return Distribution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-statistics">Summary Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">4.1. 🎯 Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">4.2. 📋 Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">4.3. 🛠️ Setup <a id="setup"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-stock-return">4.4. What is a Stock Return? <a id="what-is-a-stock-return"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-core-question">4.4.1. The Core Question</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-return-formula">4.4.2. The Return Formula</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-computing-returns-from-data">4.4.3. Example: Computing Returns from Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-return-series">4.4.4. Visualizing the Return Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-distribution">4.4.5. Return Distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-statistics">4.4.6. Summary Statistics</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excess-returns">Excess Returns <a id="excess-returns"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-excess-returns">Why Excess Returns?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-risk-free-rate">Loading the Risk-Free Rate</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-excess-returns">Computing Excess Returns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excess-returns">4.5. Excess Returns <a id="excess-returns"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-excess-returns">4.5.1. Why Excess Returns?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-risk-free-rate">4.5.2. Loading the Risk-Free Rate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-excess-returns">4.5.3. Computing Excess Returns</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excess-returns-as-long-short-trading-strategies">Excess returns as long-short trading strategies</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#long-short-trading-strategies-are-self-financed">Long-short trading strategies are self-financed</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-premiums">Risk Premiums <a id="risk-premiums"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-excess-returns-to-risk-premiums">From Excess Returns to Risk Premiums</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-sharpe-ratio">The Sharpe Ratio</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-returns-the-power-of-compounding">Cumulative Returns: The Power of Compounding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excess-returns-as-long-short-trading-strategies">4.6. Excess returns as long-short trading strategies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#long-short-trading-strategies-are-self-financed">4.7. Long-short trading strategies are self-financed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-premiums">4.8. Risk Premiums <a id="risk-premiums"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-excess-returns-to-risk-premiums">4.8.1. From Excess Returns to Risk Premiums</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-sharpe-ratio">4.8.2. The Sharpe Ratio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-returns-the-power-of-compounding">4.8.3. Cumulative Returns: The Power of Compounding</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">📝 Exercises <a id="exercises"></a></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-warm-up-basic-return-calculation">Exercise 1: Warm-up — Basic Return Calculation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-extension-another-stock">Exercise 2: Extension — Another Stock</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-open-ended-risk-analysis">Exercise 3: Open-ended — Risk Analysis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-challenge-rolling-analysis">Exercise 4: Challenge — Rolling Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">4.9. 📝 Exercises <a id="exercises"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-warm-up-basic-return-calculation">4.9.1. Exercise 1: Warm-up — Basic Return Calculation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-extension-another-stock">4.9.2. Exercise 2: Extension — Another Stock</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-open-ended-risk-analysis">4.9.3. Exercise 3: Open-ended — Risk Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-challenge-rolling-analysis">4.9.4. Exercise 4: Challenge — Rolling Analysis</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">🧠 Key Takeaways <a id="key-takeaways"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">4.10. 🧠 Key Takeaways <a id="key-takeaways"></a></a></li>
 </ul>
   </nav></div>
 
